@@ -206,11 +206,11 @@ li {
     }
     
     .post-it::before {
-        display: none; /* Quitamos la chincheta en móvil para ganar espacio */
+        display: none; 
     }
     
     .actions {
-        flex-direction: column; /* Botones uno debajo de otro en móvil */
+        flex-direction: column; 
     }
     
     .actions button {
