@@ -1,0 +1,152 @@
+body {
+    background-color: #e8e8e8;
+    font-family: 'Kalam', cursive;
+    display: flex;
+    justify-content: center;
+    padding-top: 30px;
+    min-height: 100vh;
+}
+
+.post-it {
+    background-color: #ffff88;
+    width: 90%;
+    max-width: 380px;
+    min-height: 400px;
+    padding: 25px;
+    position: relative;
+    box-shadow: 0 10px 10px 2px rgba(0,0,0,0.3);
+    transform: rotate(-2deg);
+    transition: transform 0.3s ease;
+}
+
+.post-it:hover {
+   transform: rotate(0deg) scale(1.02);
+}
+
+h2 {
+    text-align: center;
+    color: #333;
+    margin-top: 0;
+    margin-bottom: 25px;
+    font-weight: 700;
+    font-size: 1.8rem;
+    text-shadow: 1px 1px 0px rgba(0,0,0,0.1);
+}
+
+.input-group {
+    display: flex;
+    gap: 5px;
+    margin-bottom: 20px;
+}
+
+input {
+    flex-grow: 1;
+    padding: 10px;
+    background: rgba(255,255,255,0.5);
+    border: none;
+    border-bottom: 2px dashed #666;
+    font-family: 'Kalam', cursive;
+    font-size: 1.1rem;
+    outline: none;
+}
+
+input::placeholder {
+    color: #999;
+}
+
+button {
+    cursor: pointer;
+    padding: 8px 15px;
+    border: 2px solid #333;
+    border-radius: 255px 15px 225px 15px/15px 225px 15px 255px;
+    font-family: 'Kalam', cursive;
+    font-weight: bold;
+    font-size: 1rem;
+    background-color: #ffeb3b;
+    color: #333;
+    box-shadow: 2px 2px 0 rgba(0,0,0,0.2);
+    transition: all 0.2s;
+}
+
+button:hover {
+    transform: translate(-2px, -2px);
+    box-shadow: 4px 4px 0 rgba(0,0,0,0.2);
+}
+
+button:active {
+    transform: translate(0px, 0px);
+    box-shadow: 0px 0px 0 rgba(0,0,0,0.2);
+}
+
+#btnAdd {
+    background-color: #8bc34a;
+    color: white;
+    border-color: #558b2f;
+}
+
+ul {
+    list-style: none;
+    padding: 0;
+    margin-bottom: 25px;
+}
+
+li {
+    border-bottom: 1px solid rgba(0,0,0,0.1);
+    padding: 12px 5px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 1.2rem;
+    color: #222;
+}
+
+.btn-delete {
+    background-color: #ff5722;
+    color: white;
+    border-color: #d84315;
+    padding: 5px 10px;
+    font-size: 0.9rem;
+}
+
+.actions {
+    display: flex;
+    justify-content: space-around;
+    gap: 10px;
+    margin-top: auto;
+    padding-top: 15px;
+    border-top: 2px dashed #666;
+}
+
+.btn-secondary {
+    background-color: #bdbdbd;
+    border-color: #757575;
+}
+
+.btn-danger {
+    background-color: #ff5722;
+    color: white;
+    border-color: #d84315;
+}
+
+@media (max-width: 400px) {
+    body {
+        padding-top: 10px;
+    }
+    .post-it {
+        width: 95%;
+        padding: 15px;
+        transform: rotate(0deg);
+    }
+    h2 {
+        font-size: 1.5rem;
+    }
+    li {
+        font-size: 1.1rem;
+    }
+    .actions {
+        flex-wrap: wrap;
+    }
+    .actions button {
+        width: 100%; 
+    }
+}

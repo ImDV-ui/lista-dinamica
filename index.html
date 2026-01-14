@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mi Pósit de Compra</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Kalam:wght@300;400;700&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <div class="post-it">
+        <h2>🛒 Lista de la Compra</h2>
+        
+        <div class="input-group">
+            <input type="text" id="inputProducto" placeholder="Escribe aquí...">
+            <button id="btnAdd">Anotar</button>
+        </div>
+
+        <ul id="listaProductos">
+            </ul>
+
+        <div class="actions">
+            <button id="btnSort" class="btn-secondary">Ordenar A-Z</button>
+            <button id="btnClean" class="btn-danger">Borrar Todo</button>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
