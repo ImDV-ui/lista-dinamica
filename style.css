@@ -1,5 +1,8 @@
 body {
-    background-color: #e8e8e8;
+    background-color: #aa8c70;
+    background-image: radial-gradient(rgba(0, 0, 0, 0.2) 15%, transparent 16%),
+        radial-gradient(rgba(0, 0, 0, 0.1) 15%, transparent 16%);
+    background-size: 8px 8px;
     font-family: 'Kalam', cursive;
     display: flex;
     justify-content: center;
@@ -14,13 +17,13 @@ body {
     min-height: 400px;
     padding: 25px;
     position: relative;
-    box-shadow: 0 10px 10px 2px rgba(0,0,0,0.3);
+    box-shadow: 0 10px 10px 2px rgba(0, 0, 0, 0.3);
     transform: rotate(-2deg);
     transition: transform 0.3s ease;
 }
 
 .post-it:hover {
-   transform: rotate(0deg) scale(1.02);
+    transform: rotate(0deg) scale(1.02);
 }
 
 h2 {
@@ -30,7 +33,7 @@ h2 {
     margin-bottom: 25px;
     font-weight: 700;
     font-size: 1.8rem;
-    text-shadow: 1px 1px 0px rgba(0,0,0,0.1);
+    text-shadow: 1px 1px 0px rgba(0, 0, 0, 0.1);
 }
 
 .input-group {
@@ -42,7 +45,7 @@ h2 {
 input {
     flex-grow: 1;
     padding: 10px;
-    background: rgba(255,255,255,0.5);
+    background: rgba(255, 255, 255, 0.5);
     border: none;
     border-bottom: 2px dashed #666;
     font-family: 'Kalam', cursive;
@@ -64,18 +67,18 @@ button {
     font-size: 1rem;
     background-color: #ffeb3b;
     color: #333;
-    box-shadow: 2px 2px 0 rgba(0,0,0,0.2);
+    box-shadow: 2px 2px 0 rgba(0, 0, 0, 0.2);
     transition: all 0.2s;
 }
 
 button:hover {
     transform: translate(-2px, -2px);
-    box-shadow: 4px 4px 0 rgba(0,0,0,0.2);
+    box-shadow: 4px 4px 0 rgba(0, 0, 0, 0.2);
 }
 
 button:active {
     transform: translate(0px, 0px);
-    box-shadow: 0px 0px 0 rgba(0,0,0,0.2);
+    box-shadow: 0px 0px 0 rgba(0, 0, 0, 0.2);
 }
 
 #btnAdd {
@@ -91,7 +94,7 @@ ul {
 }
 
 li {
-    border-bottom: 1px solid rgba(0,0,0,0.1);
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
     padding: 12px 5px;
     display: flex;
     justify-content: space-between;
@@ -132,21 +135,26 @@ li {
     body {
         padding-top: 10px;
     }
+
     .post-it {
         width: 95%;
         padding: 15px;
         transform: rotate(0deg);
     }
+
     h2 {
         font-size: 1.5rem;
     }
+
     li {
         font-size: 1.1rem;
     }
+
     .actions {
         flex-wrap: wrap;
     }
+
     .actions button {
-        width: 100%; 
+        width: 100%;
     }
 }
