@@ -1,4 +1,6 @@
+/* --- Configuración General (Fondo de Tablón) --- */
 body {
+    /* Un patrón de puntos sutil para que no se vea vacío el fondo */
     background-color: #e5e5f7;
     background-image:  radial-gradient(#444cf7 0.5px, transparent 0.5px), radial-gradient(#444cf7 0.5px, #e5e5f7 0.5px);
     background-size: 20px 20px;
@@ -7,38 +9,44 @@ body {
     font-family: 'Kalam', cursive;
     display: flex;
     justify-content: center;
-    align-items: center; 
+    align-items: center; /* Centrado vertical también */
     min-height: 100vh;
     margin: 0;
     padding: 20px;
     box-sizing: border-box;
 }
 
+/* --- El Pósit (Contenedor Principal) --- */
 .post-it {
+    /* Color base amarillo */
     background-color: #ffff88;
     
+    /* TRUCO: Líneas de libreta usando gradientes CSS */
     background-image: linear-gradient(#91d1d3 1px, transparent 1px);
-    background-size: 100% 2rem; 
-    line-height: 2rem; 
-    background-position-y: 25px; 
+    background-size: 100% 2rem; /* Tamaño de cada renglón */
+    line-height: 2rem; /* Alineamos el texto a las líneas */
+    background-position-y: 25px; /* Ajuste para que empiece bien */
 
     width: 100%;
-    max-width: 400px; 
-    min-height: 500px; 
+    max-width: 400px; /* Un poco más ancho para llenar pantalla */
+    min-height: 500px; /* Altura mínima para que imponga presencia */
     
     padding: 30px 25px;
     position: relative;
     box-shadow: 10px 10px 20px rgba(0,0,0,0.3);
     
+    /* Rotación ligera */
     transform: rotate(-2deg);
     transition: transform 0.3s ease;
 }
 
+/* Efecto Hover */
 .post-it:hover {
     transform: rotate(0deg) scale(1.01);
     box-shadow: 15px 15px 30px rgba(0,0,0,0.2);
 }
 
+/* --- La Chincheta (Creada solo con CSS) --- */
 .post-it::before {
     content: '';
     position: absolute;
@@ -54,6 +62,7 @@ body {
     border: 1px solid #a93226;
 }
 
+/* --- Títulos --- */
 h2 {
     text-align: center;
     color: #333;
@@ -65,15 +74,16 @@ h2 {
     transform: rotate(-1deg);
 }
 
+/* --- Zona del Input --- */
 .input-group {
     display: flex;
     gap: 8px;
     margin-bottom: 30px;
-    background: rgba(255,255,255,0.6); 
+    background: rgba(255,255,255,0.6); /* Fondo blanco semitransparente para resaltar */
     padding: 10px;
     border-radius: 8px;
     box-shadow: inset 0 0 5px rgba(0,0,0,0.1);
-    transform: rotate(1deg); 
+    transform: rotate(1deg); /* Un poco de desorden natural */
 }
 
 input {
@@ -92,6 +102,7 @@ input::placeholder {
     font-style: italic;
 }
 
+/* --- Botones --- */
 button {
     cursor: pointer;
     border: 2px solid #333;
@@ -114,24 +125,28 @@ button:active {
     border: none;
     border-radius: 5px;
     padding: 5px 15px;
-    transform: rotate(-2deg); 
+    transform: rotate(-2deg); /* Botón torcido */
 }
 
+/* --- La Lista --- */
 ul {
     list-style: none;
     padding: 0;
-    margin-bottom: 40px; 
+    margin-bottom: 40px; /* Espacio antes de los botones finales */
 }
 
 li {
+    /* Quitamos el borde porque ya tenemos las líneas de fondo */
     padding: 0 5px;
     margin-bottom: 0; 
+    
+    /* IMPORTANTE: Ajustar la altura a la línea del papel */
     height: 2rem; 
     display: flex;
     justify-content: space-between;
     align-items: center;
     font-size: 1.3rem;
-    color: #0000aa; 
+    color: #0000aa; /* Color tipo bolígrafo azul */
 }
 
 .btn-delete {
@@ -149,19 +164,20 @@ li {
     transform: scale(1.1);
 }
 
+/* --- Botones inferiores (Ahora llenan más) --- */
 .actions {
     display: flex;
     justify-content: space-between;
     gap: 15px;
-    margin-top: auto;
+    margin-top: auto; /* Empuja al fondo */
     padding-top: 15px;
-    border-top: 2px solid #333; 
+    border-top: 2px solid #333; /* Línea negra gruesa final */
 }
 
 .actions button {
-    flex: 1; 
+    flex: 1; /* Hacemos que ocupen todo el ancho disponible */
     padding: 10px;
-    border-radius: 2px; 
+    border-radius: 2px; /* Más cuadrados, tipo sticker */
 }
 
 .btn-secondary {
@@ -176,24 +192,25 @@ li {
     transform: rotate(-1deg);
 }
 
+/* --- Responsividad --- */
 @media (max-width: 500px) {
     body {
-        align-items: flex-start; 
+        align-items: flex-start; /* En móvil que empiece arriba */
     }
     
     .post-it {
         max-width: 100%;
-        min-height: 80vh; 
-        transform: rotate(0deg); 
+        min-height: 80vh; /* En móvil ocupa casi todo el alto */
+        transform: rotate(0deg); /* Quitamos rotación en móvil */
         margin-bottom: 20px;
     }
     
     .post-it::before {
-        display: none; 
+        display: none; /* Quitamos la chincheta en móvil para ganar espacio */
     }
     
     .actions {
-        flex-direction: column; 
+        flex-direction: column; /* Botones uno debajo de otro en móvil */
     }
     
     .actions button {
