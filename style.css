@@ -1,160 +1,220 @@
+/* --- Configuración General (Fondo de Tablón) --- */
 body {
-    background-color: #aa8c70;
-    background-image: radial-gradient(rgba(0, 0, 0, 0.2) 15%, transparent 16%),
-        radial-gradient(rgba(0, 0, 0, 0.1) 15%, transparent 16%);
-    background-size: 8px 8px;
+    /* Un patrón de puntos sutil para que no se vea vacío el fondo */
+    background-color: #e5e5f7;
+    background-image:  radial-gradient(#444cf7 0.5px, transparent 0.5px), radial-gradient(#444cf7 0.5px, #e5e5f7 0.5px);
+    background-size: 20px 20px;
+    background-position: 0 0, 10px 10px;
+    
     font-family: 'Kalam', cursive;
     display: flex;
     justify-content: center;
-    padding-top: 30px;
+    align-items: center; /* Centrado vertical también */
     min-height: 100vh;
+    margin: 0;
+    padding: 20px;
+    box-sizing: border-box;
 }
 
+/* --- El Pósit (Contenedor Principal) --- */
 .post-it {
+    /* Color base amarillo */
     background-color: #ffff88;
-    width: 90%;
-    max-width: 380px;
-    min-height: 400px;
-    padding: 25px;
+    
+    /* TRUCO: Líneas de libreta usando gradientes CSS */
+    background-image: linear-gradient(#91d1d3 1px, transparent 1px);
+    background-size: 100% 2rem; /* Tamaño de cada renglón */
+    line-height: 2rem; /* Alineamos el texto a las líneas */
+    background-position-y: 25px; /* Ajuste para que empiece bien */
+
+    width: 100%;
+    max-width: 400px; /* Un poco más ancho para llenar pantalla */
+    min-height: 500px; /* Altura mínima para que imponga presencia */
+    
+    padding: 30px 25px;
     position: relative;
-    box-shadow: 0 10px 10px 2px rgba(0, 0, 0, 0.3);
+    box-shadow: 10px 10px 20px rgba(0,0,0,0.3);
+    
+    /* Rotación ligera */
     transform: rotate(-2deg);
     transition: transform 0.3s ease;
 }
 
+/* Efecto Hover */
 .post-it:hover {
-    transform: rotate(0deg) scale(1.02);
+    transform: rotate(0deg) scale(1.01);
+    box-shadow: 15px 15px 30px rgba(0,0,0,0.2);
 }
 
+/* --- La Chincheta (Creada solo con CSS) --- */
+.post-it::before {
+    content: '';
+    position: absolute;
+    top: -15px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 20px;
+    height: 20px;
+    background: radial-gradient(circle at 30% 30%, #ff6b6b, #c0392b);
+    border-radius: 50%;
+    box-shadow: 2px 2px 5px rgba(0,0,0,0.5);
+    z-index: 10;
+    border: 1px solid #a93226;
+}
+
+/* --- Títulos --- */
 h2 {
     text-align: center;
     color: #333;
-    margin-top: 0;
+    margin-top: 10px;
     margin-bottom: 25px;
     font-weight: 700;
-    font-size: 1.8rem;
-    text-shadow: 1px 1px 0px rgba(0, 0, 0, 0.1);
+    font-size: 2.2rem;
+    text-shadow: 2px 2px 0px rgba(255,255,255,0.5);
+    transform: rotate(-1deg);
 }
 
+/* --- Zona del Input --- */
 .input-group {
     display: flex;
-    gap: 5px;
-    margin-bottom: 20px;
+    gap: 8px;
+    margin-bottom: 30px;
+    background: rgba(255,255,255,0.6); /* Fondo blanco semitransparente para resaltar */
+    padding: 10px;
+    border-radius: 8px;
+    box-shadow: inset 0 0 5px rgba(0,0,0,0.1);
+    transform: rotate(1deg); /* Un poco de desorden natural */
 }
 
 input {
     flex-grow: 1;
-    padding: 10px;
-    background: rgba(255, 255, 255, 0.5);
+    background: transparent;
     border: none;
-    border-bottom: 2px dashed #666;
+    border-bottom: 2px dashed #555;
     font-family: 'Kalam', cursive;
-    font-size: 1.1rem;
+    font-size: 1.2rem;
+    color: #333;
     outline: none;
 }
 
 input::placeholder {
-    color: #999;
+    color: #777;
+    font-style: italic;
 }
 
+/* --- Botones --- */
 button {
     cursor: pointer;
-    padding: 8px 15px;
     border: 2px solid #333;
-    border-radius: 255px 15px 225px 15px/15px 225px 15px 255px;
     font-family: 'Kalam', cursive;
     font-weight: bold;
     font-size: 1rem;
-    background-color: #ffeb3b;
     color: #333;
-    box-shadow: 2px 2px 0 rgba(0, 0, 0, 0.2);
-    transition: all 0.2s;
-}
-
-button:hover {
-    transform: translate(-2px, -2px);
-    box-shadow: 4px 4px 0 rgba(0, 0, 0, 0.2);
+    transition: transform 0.1s;
+    box-shadow: 3px 3px 0 rgba(0,0,0,0.2);
 }
 
 button:active {
-    transform: translate(0px, 0px);
-    box-shadow: 0px 0px 0 rgba(0, 0, 0, 0.2);
+    transform: translate(2px, 2px);
+    box-shadow: 1px 1px 0 rgba(0,0,0,0.2);
 }
 
 #btnAdd {
     background-color: #8bc34a;
     color: white;
-    border-color: #558b2f;
+    border: none;
+    border-radius: 5px;
+    padding: 5px 15px;
+    transform: rotate(-2deg); /* Botón torcido */
 }
 
+/* --- La Lista --- */
 ul {
     list-style: none;
     padding: 0;
-    margin-bottom: 25px;
+    margin-bottom: 40px; /* Espacio antes de los botones finales */
 }
 
 li {
-    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
-    padding: 12px 5px;
+    /* Quitamos el borde porque ya tenemos las líneas de fondo */
+    padding: 0 5px;
+    margin-bottom: 0; 
+    
+    /* IMPORTANTE: Ajustar la altura a la línea del papel */
+    height: 2rem; 
     display: flex;
     justify-content: space-between;
     align-items: center;
-    font-size: 1.2rem;
-    color: #222;
+    font-size: 1.3rem;
+    color: #0000aa; /* Color tipo bolígrafo azul */
 }
 
 .btn-delete {
-    background-color: #ff5722;
-    color: white;
-    border-color: #d84315;
-    padding: 5px 10px;
-    font-size: 0.9rem;
+    background: none;
+    border: none;
+    color: #d32f2f;
+    font-weight: bold;
+    font-size: 1.2rem;
+    box-shadow: none;
+    cursor: pointer;
 }
 
+.btn-delete:hover {
+    text-decoration: underline;
+    transform: scale(1.1);
+}
+
+/* --- Botones inferiores (Ahora llenan más) --- */
 .actions {
     display: flex;
-    justify-content: space-around;
-    gap: 10px;
-    margin-top: auto;
+    justify-content: space-between;
+    gap: 15px;
+    margin-top: auto; /* Empuja al fondo */
     padding-top: 15px;
-    border-top: 2px dashed #666;
+    border-top: 2px solid #333; /* Línea negra gruesa final */
+}
+
+.actions button {
+    flex: 1; /* Hacemos que ocupen todo el ancho disponible */
+    padding: 10px;
+    border-radius: 2px; /* Más cuadrados, tipo sticker */
 }
 
 .btn-secondary {
-    background-color: #bdbdbd;
-    border-color: #757575;
+    background-color: #e0e0e0;
+    transform: rotate(1deg);
 }
 
 .btn-danger {
-    background-color: #ff5722;
+    background-color: #ff7043;
     color: white;
-    border-color: #d84315;
+    border: none;
+    transform: rotate(-1deg);
 }
 
-@media (max-width: 400px) {
+/* --- Responsividad --- */
+@media (max-width: 500px) {
     body {
-        padding-top: 10px;
+        align-items: flex-start; /* En móvil que empiece arriba */
     }
-
+    
     .post-it {
-        width: 95%;
-        padding: 15px;
-        transform: rotate(0deg);
+        max-width: 100%;
+        min-height: 80vh; /* En móvil ocupa casi todo el alto */
+        transform: rotate(0deg); /* Quitamos rotación en móvil */
+        margin-bottom: 20px;
     }
-
-    h2 {
-        font-size: 1.5rem;
+    
+    .post-it::before {
+        display: none; /* Quitamos la chincheta en móvil para ganar espacio */
     }
-
-    li {
-        font-size: 1.1rem;
-    }
-
+    
     .actions {
-        flex-wrap: wrap;
+        flex-direction: column; /* Botones uno debajo de otro en móvil */
     }
-
+    
     .actions button {
         width: 100%;
+        margin-bottom: 5px;
     }
 }
