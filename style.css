@@ -187,3 +187,20 @@ li.comprado .prod-name::before {
 @media (max-width: 500px) {
     .post-it { width: 95%; transform: rotate(0deg); }
 }
+
+body {
+    /* Nueva configuración del fondo */
+    background-image: url('Gemini_Generated_Image_qm4t8jqm4t8jqm4t.png');
+    background-size: cover;       /* Escala la imagen para cubrir toda la pantalla */
+    background-position: center;  /* Centra la imagen del frigorífico */
+    background-repeat: no-repeat; /* Evita que la imagen se repita como un mosaico */
+    background-attachment: fixed; /* El fondo se queda quieto si la lista es muy larga */
+    
+    /* Configuración de fuente y layout existente */
+    font-family: 'Kalam', cursive;
+    display: flex;
+    justify-content: center;
+    padding-top: 40px;
+    min-height: 100vh;
+    margin: 0;
+}
