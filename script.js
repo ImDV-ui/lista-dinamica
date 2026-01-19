@@ -1,9 +1,40 @@
+class Item {
+    constructor(name) {
+        this.name = name;
+        this.purchased = false;
+        this.count = 1;
+    }
+
+    toggle() {
+        this.purchased = !this.purchased;
+    }
+
+    sumar() {
+        if (!this.purchased) {
+            this.count++;
+        }
+    }
+
+    restar() {
+        if (!this.purchased && this.count > 0) {
+            this.count--;
+        }
+    }
+}
+
 let productos = [];
-let compradosAlFinal = true; 
+let compradosAlFinal = true;
 
 const guardado = localStorage.getItem('listaCompra');
 if (guardado) {
-    productos = JSON.parse(guardado);
+    const rawData = JSON.parse(guardado);
+    productos = rawData.map(p => {
+        const nombre = p.name || p.nombre;
+        const item = new Item(nombre);
+        item.purchased = (p.purchased !== undefined) ? p.purchased : p.comprado;
+        item.count = (p.count !== undefined) ? p.count : (p.cantidad || 1);
+        return item;
+    });
 }
 
 const inputProducto = document.getElementById('inputProducto');
@@ -18,59 +49,59 @@ function guardar() {
 }
 
 function render() {
-    const pendientes = productos.filter(p => !p.comprado);
-    const comprados = productos.filter(p => p.comprado);
+    const pendientes = productos.filter(p => !p.purchased);
+    const comprados = productos.filter(p => p.purchased);
 
     let listaOrdenada;
     if (compradosAlFinal) {
-        listaOrdenada = [...pendientes, ...comprados]; 
+        listaOrdenada = [...pendientes, ...comprados];
         btnToggleOrder.textContent = "Ver comprados: AL FINAL ⬇️";
     } else {
-        listaOrdenada = [...comprados, ...pendientes]; 
+        listaOrdenada = [...comprados, ...pendientes];
         btnToggleOrder.textContent = "Ver comprados: ARRIBA ⬆️";
     }
 
-    productos = listaOrdenada; 
-    
-    listaProductos.innerHTML = ''; 
+    productos = listaOrdenada;
+
+    listaProductos.innerHTML = '';
 
     productos.forEach((item, index) => {
         const li = document.createElement('li');
-        
+
         const spanNombre = document.createElement('span');
-        spanNombre.textContent = item.nombre;
+        spanNombre.textContent = item.name;
         spanNombre.className = 'prod-name';
-        
+
         const qtyControls = document.createElement('div');
         qtyControls.className = 'qty-controls';
 
         const btnMinus = document.createElement('button');
         btnMinus.textContent = '-';
         btnMinus.className = 'qty-btn';
-        
+
         const spanQty = document.createElement('span');
-        spanQty.textContent = item.cantidad;
+        spanQty.textContent = item.count;
         spanQty.className = 'qty-span';
-        
+
         const btnPlus = document.createElement('button');
         btnPlus.textContent = '+';
         btnPlus.className = 'qty-btn';
 
-        if (item.comprado) {
+        if (item.purchased) {
             li.classList.add('comprado');
             btnMinus.disabled = true;
             btnPlus.disabled = true;
         }
 
         spanNombre.onclick = () => toggleComprado(index);
-        
+
         btnMinus.onclick = (e) => { e.stopPropagation(); decrementarCantidad(index); };
         btnPlus.onclick = (e) => { e.stopPropagation(); incrementarCantidad(index); };
 
         qtyControls.appendChild(btnMinus);
         qtyControls.appendChild(spanQty);
         qtyControls.appendChild(btnPlus);
-        
+
         li.appendChild(spanNombre);
         li.appendChild(qtyControls);
         listaProductos.appendChild(li);
@@ -81,17 +112,13 @@ function agregarProducto() {
     const valor = inputProducto.value.trim();
     if (valor === '') return;
 
-    const existe = productos.some(p => p.nombre.toLowerCase() === valor.toLowerCase());
+    const existe = productos.some(p => p.name.toLowerCase() === valor.toLowerCase());
     if (existe) {
         alert('¡Ya está en la lista!');
         return;
     }
 
-    productos.push({
-        nombre: valor,
-        comprado: false,
-        cantidad: 1
-    });
+    productos.push(new Item(valor));
 
     guardar();
     inputProducto.value = '';
@@ -99,18 +126,15 @@ function agregarProducto() {
 }
 
 function incrementarCantidad(index) {
-    if (productos[index].comprado) return;
-    productos[index].cantidad++;
+    productos[index].sumar();
     guardar();
     render();
 }
 
 function decrementarCantidad(index) {
-    if (productos[index].comprado) return;
-    
-    if (productos[index].cantidad > 1) {
-        productos[index].cantidad--;
-    } else {
+    productos[index].restar();
+
+    if (productos[index].count === 0) {
         eliminarProducto(index);
         return;
     }
@@ -119,9 +143,9 @@ function decrementarCantidad(index) {
 }
 
 function toggleComprado(index) {
-    productos[index].comprado = !productos[index].comprado;
+    productos[index].toggle();
     guardar();
-    render(); 
+    render();
 }
 
 function eliminarProducto(index) {
@@ -139,7 +163,7 @@ function limpiarLista() {
 }
 
 function ordenarAlfabeticamente() {
-    productos.sort((a, b) => a.nombre.localeCompare(b.nombre));
+    productos.sort((a, b) => a.name.localeCompare(b.name));
     guardar();
     render();
 }
