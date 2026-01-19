@@ -1,7 +1,7 @@
 let productos = [];
 let compradosAlFinal = true; 
 
-const guardado = localStorage.getItem('listaCompraPro');
+const guardado = localStorage.getItem('listaCompra');
 if (guardado) {
     productos = JSON.parse(guardado);
 }
@@ -14,7 +14,7 @@ const btnSort = document.getElementById('btnSort');
 const btnToggleOrder = document.getElementById('btnToggleOrder');
 
 function guardar() {
-    localStorage.setItem('listaCompraPro', JSON.stringify(productos));
+    localStorage.setItem('listaCompra', JSON.stringify(productos));
 }
 
 function render() {
